@@ -126,24 +126,31 @@
     }
 
     .language-kicker {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
       width: max-content;
-      margin: 10px 0 8px;
+      margin: 12px 0 9px;
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-      font-size: clamp(10px, 0.82vw, 12px);
+      font-size: clamp(12px, 0.9vw, 13px);
       font-weight: 700;
       line-height: 1;
-      letter-spacing: 0.18em;
-      background: linear-gradient(110deg, #24302f 0%, #5f776f 48%, #a5beb4 72%, #5f776f 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
+      letter-spacing: 0.14em;
       color: var(--accent);
-      -webkit-text-fill-color: transparent;
-      text-shadow:
-        0 1px 0 rgba(255,255,255,0.72),
-        0 2px 0 rgba(36,48,47,0.12),
-        0 0 9px rgba(95,119,111,0.44),
-        0 0 18px rgba(95,119,111,0.2);
+    }
+
+    .language-kicker::after {
+      content: "";
+      width: 44px;
+      height: 1px;
+      margin-left: 2px;
+      background: currentColor;
+      opacity: 0.58;
+    }
+
+    .language-kicker .select-slash {
+      color: var(--text);
+      font-weight: 500;
     }
 
     .bridges {
@@ -348,7 +355,7 @@
           <h1>DU<span class="slash">/</span>CHEN<span class="brand-mark">+→</span></h1>
           <p class="manifesto">
             <span>culture × life × love × technology</span>
-            <span class="language-kicker">CROSS/LANGUAGE</span>
+            <span class="language-kicker"><span>SELECT</span><span class="select-slash">/</span><span>BRIDGE</span></span>
             <span class="bridges" role="group" aria-label="Language selection">
               <button class="bridge-icon" type="button" aria-label="中文">
                 <svg viewBox="0 0 72 34" aria-hidden="true">
