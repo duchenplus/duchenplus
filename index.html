@@ -398,7 +398,7 @@
           <a class="nav-item" id="consult-link" href="consult.html">
             <span><span class="symbol">/ +</span><span data-i18n="consult">Consult</span></span>
           </a>
-          <a class="nav-item" href="#notes">
+          <a class="nav-item" id="notes-link" href="notes.html">
             <span><span class="symbol">//</span><span data-i18n="notes">Notes</span></span>
           </a>
           <a class="nav-item" href="#life">
@@ -486,6 +486,7 @@
 
       document.getElementById("origin-link").href = `origin.html?lang=${language}`;
       document.getElementById("consult-link").href = `consult.html?lang=${language}`;
+      document.getElementById("notes-link").href = `notes.html?lang=${language}`;
       localStorage.setItem("duchen-language", language);
     }
 
