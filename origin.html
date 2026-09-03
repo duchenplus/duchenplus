@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The origin of DU/CHEN+ — a bridge between information and human experience." />
+  <title>Origin — DU/CHEN+→</title>
+  <style>
+    :root {
+      --bg: #efeee8;
+      --text: #24302f;
+      --muted: #69716e;
+      --line: rgba(36, 48, 47, 0.16);
+      --accent: #5f776f;
+      --accent-soft: rgba(95, 119, 111, 0.11);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", "Noto Sans", "Noto Sans CJK SC", Helvetica, Arial, sans-serif;
+    }
+
+    button,
+    a {
+      color: inherit;
+      font: inherit;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand {
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark,
+    .slash {
+      color: var(--accent);
+    }
+
+    .back {
+      color: var(--muted);
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    .back:hover,
+    .back:focus-visible {
+      color: var(--accent);
+      transform: translateX(-3px);
+      outline: none;
+    }
+
+    main {
+      padding: clamp(70px, 10vw, 132px) 0 92px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(230px, 0.65fr);
+      gap: clamp(48px, 8vw, 104px);
+      align-items: start;
+    }
+
+    .eyebrow {
+      margin-bottom: 30px;
+      color: var(--accent);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 780px;
+      font-size: clamp(42px, 6.2vw, 80px);
+      line-height: 1.02;
+      letter-spacing: -0.055em;
+      font-weight: 720;
+    }
+
+    h1 em {
+      display: block;
+      color: var(--accent);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      letter-spacing: -0.035em;
+    }
+
+    .language-switch {
+      border-top: 1px solid var(--line);
+    }
+
+    .language-switch button {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: left;
+      transition: color 180ms ease, padding-left 180ms ease;
+    }
+
+    .language-switch button::after {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0;
+    }
+
+    .language-switch button:hover,
+    .language-switch button:focus-visible,
+    .language-switch button[aria-pressed="true"] {
+      color: var(--accent);
+      padding-left: 7px;
+      outline: none;
+    }
+
+    .language-switch button[aria-pressed="true"]::after {
+      opacity: 1;
+    }
+
+    .content-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+      gap: clamp(48px, 8vw, 104px);
+      margin-top: clamp(78px, 12vw, 150px);
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-label {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .story {
+      min-height: 410px;
+    }
+
+    .language-panel {
+      display: none;
+      animation: appear 320ms ease both;
+    }
+
+    .language-panel.active {
+      display: block;
+    }
+
+    .language-panel p {
+      margin-bottom: 1.15em;
+      font-size: clamp(18px, 2vw, 25px);
+      line-height: 1.66;
+      letter-spacing: -0.02em;
+    }
+
+    .language-panel .quiet {
+      color: var(--muted);
+    }
+
+    .closing {
+      margin-top: 38px;
+      padding: 28px;
+      border-left: 2px solid var(--accent);
+      background: var(--accent-soft);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(22px, 2.6vw, 32px);
+      line-height: 1.45;
+      color: var(--accent);
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0 30px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(7px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 760px) {
+      .intro,
+      .content-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .intro {
+        gap: 52px;
+      }
+
+      .content-wrap {
+        gap: 28px;
+      }
+
+      .language-switch {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-left: 1px solid var(--line);
+      }
+
+      .language-switch button {
+        padding: 13px 14px;
+        border-right: 1px solid var(--line);
+      }
+
+      .language-switch button:hover,
+      .language-switch button:focus-visible,
+      .language-switch button[aria-pressed="true"] {
+        padding-left: 18px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(100% - 26px, 1120px);
+      }
+
+      header {
+        min-height: 66px;
+      }
+
+      main {
+        padding-top: 58px;
+      }
+
+      h1 {
+        font-size: clamp(39px, 12vw, 57px);
+      }
+
+      .language-panel p {
+        font-size: 18px;
+      }
+
+      .closing {
+        padding: 22px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 7px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="index.html" aria-label="DUCHEN+ home">DU<span class="slash">/</span>CHEN<span class="brand-mark">+→</span></a>
+      <a class="back" href="index.html">← Back</a>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="origin-title">
+        <div>
+          <p class="eyebrow">&lt;&gt; Origin / 001</p>
+          <h1 id="origin-title">
+            Not all answers begin with expertise.
+            <em>Sometimes, they begin with curiosity.</em>
+          </h1>
+        </div>
+
+        <nav class="language-switch" aria-label="Choose language">
+          <button type="button" data-lang="zh">中文</button>
+          <button type="button" data-lang="fr">Français</button>
+          <button type="button" data-lang="en">English</button>
+          <button type="button" data-lang="ja">日本語</button>
+        </nav>
+      </section>
+
+      <section class="content-wrap">
+        <p class="section-label">A bridge / local eyes / human company</p>
+
+        <div class="story" aria-live="polite">
+          <article class="language-panel" data-panel="zh" lang="zh-CN">
+            <p>DUCHEN+ 是一个关于语言、文化、地方，以及人与人之间好奇心的空间。</p>
+            <p>有时候，你需要的是信息。有时候，你需要一个在当地的人，替你去看、去问、去了解，或是在日本帮你处理一些事情。</p>
+            <p>有时候，你只是不想一个人探索。</p>
+            <p class="quiet">AI 可以带来信息。而人，可以带来真实的体验、感受与温度。</p>
+            <p>我希望 DUCHEN+ 可以存在于两者之间——</p>
+            <div class="closing">一座桥，一双在当地替你看世界的眼睛，以及旅途中一点有人味的陪伴。</div>
+          </article>
+
+          <article class="language-panel" data-panel="fr" lang="fr">
+            <p>DUCHEN+ est un espace pour celles et ceux qui sont curieux des langues, des cultures, des lieux et des autres.</p>
+            <p>Parfois, vous avez besoin d’une information. Parfois, vous avez besoin de quelqu’un sur place pour regarder, demander, comprendre ou vous aider à faire quelque chose au Japon.</p>
+            <p>Et parfois, vous n’avez tout simplement pas envie d’explorer seul.</p>
+            <p class="quiet">L’IA peut apporter de l’information. Les êtres humains apportent l’expérience, la présence, les sensations et la chaleur.</p>
+            <p>J’aimerais que DUCHEN+ existe quelque part entre les deux —</p>
+            <div class="closing">Un pont, un regard sur place, et un peu de présence humaine tout au long du chemin.</div>
+          </article>
+
+          <article class="language-panel" data-panel="en" lang="en">
+            <p>DUCHEN+ is a place for people who are curious about languages, cultures, places, and each other.</p>
+            <p>Sometimes you need information. Sometimes you need someone local to look, ask, explain, or help you handle something in Japan.</p>
+            <p>Sometimes you simply don’t want to explore alone.</p>
+            <p class="quiet">AI can bring information. People bring experience, presence, and feeling.</p>
+            <p>I hope DUCHEN+ can be somewhere between the two —</p>
+            <div class="closing">A bridge, a local pair of eyes, and a little human company along the way.</div>
+          </article>
+
+          <article class="language-panel" data-panel="ja" lang="ja">
+            <p>DUCHEN+ は、言葉や文化、場所、そして人と人との間にある好奇心のための場所です。</p>
+            <p>情報が必要なとき。現地にいる誰かに、見てもらいたい、聞いてもらいたい、調べてもらいたいとき。あるいは、日本で何かを代わりに動いてほしいとき。</p>
+            <p>そして、ときには一人ではなく、誰かと一緒に世界を知りたいとき。</p>
+            <p class="quiet">AI は、たくさんの情報を届けてくれます。人は、そこに実際の経験や感覚、温度を加えることができます。</p>
+            <p>DUCHEN+ は、その間にある存在でありたいと思っています。</p>
+            <div class="closing">人と人をつなぐ橋。現地であなたの代わりに世界を見る目。そして旅の途中に寄り添う、少しの人間らしい温かさ。</div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> DU/CHEN+→</span>
+      <span>culture / life / love / technology</span>
+    </footer>
+  </div>
+
+  <script>
+    const supportedLanguages = ["zh", "fr", "en", "ja"];
+    const params = new URLSearchParams(window.location.search);
+    const requestedLanguage = params.get("lang");
+    const savedLanguage = localStorage.getItem("duchen-language");
+    const initialLanguage = supportedLanguages.includes(requestedLanguage)
+      ? requestedLanguage
+      : supportedLanguages.includes(savedLanguage)
+        ? savedLanguage
+        : "en";
+
+    function showLanguage(language) {
+      if (!supportedLanguages.includes(language)) return;
+
+      document.documentElement.lang = language === "zh" ? "zh-CN" : language;
+      document.querySelectorAll("[data-panel]").forEach((panel) => {
+        panel.classList.toggle("active", panel.dataset.panel === language);
+      });
+      document.querySelectorAll(".language-switch [data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", button.dataset.lang === language ? "true" : "false");
+      });
+
+      localStorage.setItem("duchen-language", language);
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("lang", language);
+      window.history.replaceState({}, "", nextUrl);
+    }
+
+    document.querySelectorAll(".language-switch [data-lang]").forEach((button) => {
+      button.addEventListener("click", () => showLanguage(button.dataset.lang));
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    showLanguage(initialLanguage);
+  </script>
+</body>
+</html>
