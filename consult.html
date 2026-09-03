@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DU/CHEN+ local, language, cross-cultural, and personal support from Japan." />
+  <title>Consult — DU/CHEN+→</title>
+  <style>
+    :root {
+      --bg: #efeee8;
+      --text: #24302f;
+      --muted: #69716e;
+      --line: rgba(36, 48, 47, 0.16);
+      --accent: #5f776f;
+      --accent-soft: rgba(95, 119, 111, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", "Noto Sans", "Noto Sans CJK SC", Helvetica, Arial, sans-serif;
+    }
+
+    button,
+    a {
+      color: inherit;
+      font: inherit;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand {
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark,
+    .slash {
+      color: var(--accent);
+    }
+
+    .back {
+      color: var(--muted);
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    .back:hover,
+    .back:focus-visible {
+      color: var(--accent);
+      transform: translateX(-3px);
+      outline: none;
+    }
+
+    main {
+      padding: clamp(68px, 9vw, 120px) 0 94px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(240px, 0.55fr);
+      gap: clamp(48px, 8vw, 104px);
+      align-items: end;
+    }
+
+    .eyebrow,
+    .signal-code,
+    .boundary-label {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      margin-bottom: 28px;
+      color: var(--accent);
+    }
+
+    h1 {
+      max-width: 850px;
+      font-size: clamp(46px, 7vw, 88px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      font-weight: 720;
+    }
+
+    .lead {
+      max-width: 660px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.58;
+      letter-spacing: -0.02em;
+    }
+
+    .language-switch {
+      border-top: 1px solid var(--line);
+    }
+
+    .language-switch button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: left;
+      transition: color 180ms ease, padding-left 180ms ease;
+    }
+
+    .language-switch button::after {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0;
+    }
+
+    .language-switch button:hover,
+    .language-switch button:focus-visible,
+    .language-switch button[aria-pressed="true"] {
+      padding-left: 7px;
+      color: var(--accent);
+      outline: none;
+    }
+
+    .language-switch button[aria-pressed="true"]::after {
+      opacity: 1;
+    }
+
+    .signals {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: clamp(82px, 12vw, 150px);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .signal {
+      min-height: 310px;
+      padding: clamp(26px, 4vw, 46px);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background 220ms ease, transform 220ms ease;
+    }
+
+    .signal:hover {
+      background: var(--accent-soft);
+    }
+
+    .signal-code {
+      color: var(--accent);
+    }
+
+    .signal h2 {
+      margin: 42px 0 18px;
+      max-width: 420px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 3.3vw, 43px);
+      line-height: 1.08;
+      font-weight: 400;
+      letter-spacing: -0.035em;
+    }
+
+    .signal p {
+      max-width: 470px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .boundary {
+      display: grid;
+      grid-template-columns: 0.42fr 0.58fr;
+      gap: clamp(44px, 8vw, 100px);
+      margin-top: clamp(78px, 11vw, 135px);
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .boundary-label {
+      color: var(--muted);
+    }
+
+    .boundary p {
+      font-size: clamp(19px, 2.2vw, 27px);
+      line-height: 1.55;
+      letter-spacing: -0.025em;
+    }
+
+    .cta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: end;
+      padding-top: clamp(80px, 12vw, 150px);
+    }
+
+    .cta h2 {
+      max-width: 820px;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      font-weight: 720;
+    }
+
+    .cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 104px;
+      height: 104px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      color: var(--accent);
+      font-size: 31px;
+      transition: color 200ms ease, background 200ms ease, transform 200ms ease;
+    }
+
+    .cta a:hover,
+    .cta a:focus-visible {
+      background: var(--accent);
+      color: var(--bg);
+      transform: rotate(-8deg);
+      outline: none;
+    }
+
+    .cta-note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0 30px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .hero,
+      .boundary,
+      .cta {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        gap: 50px;
+      }
+
+      .language-switch {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-left: 1px solid var(--line);
+      }
+
+      .language-switch button {
+        padding: 13px 14px;
+        border-right: 1px solid var(--line);
+      }
+
+      .language-switch button:hover,
+      .language-switch button:focus-visible,
+      .language-switch button[aria-pressed="true"] {
+        padding-left: 18px;
+      }
+
+      .signals {
+        grid-template-columns: 1fr;
+      }
+
+      .signal {
+        min-height: 270px;
+      }
+
+      .cta a {
+        width: 88px;
+        height: 88px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(100% - 26px, 1120px);
+      }
+
+      header {
+        min-height: 66px;
+      }
+
+      main {
+        padding-top: 56px;
+      }
+
+      h1 {
+        font-size: clamp(42px, 13vw, 60px);
+      }
+
+      .signal {
+        padding: 26px 22px;
+      }
+
+      .cta h2 {
+        font-size: 45px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 7px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="index.html" aria-label="DUCHEN+ home">DU<span class="slash">/</span>CHEN<span class="brand-mark">+→</span></a>
+      <a class="back" href="index.html" data-copy="back">← Back</a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="consult-title">
+        <div>
+          <p class="eyebrow">/ + Consult / 002</p>
+          <h1 id="consult-title" data-copy="headline">Some things still need a person on the ground.</h1>
+          <p class="lead" data-copy="lead">Based in Japan, I can look, ask, explain, organize, or accompany—across languages and cultures. Start with one real need.</p>
+        </div>
+
+        <nav class="language-switch" aria-label="Choose language">
+          <button type="button" data-lang="zh">中文</button>
+          <button type="button" data-lang="fr">Français</button>
+          <button type="button" data-lang="en">English</button>
+          <button type="button" data-lang="ja">日本語</button>
+        </nav>
+      </section>
+
+      <section class="signals" aria-label="Ways I may help">
+        <article class="signal">
+          <span class="signal-code">01 / LOCAL</span>
+          <div>
+            <h2 data-copy="localTitle">Someone here in Japan</h2>
+            <p data-copy="localText">When you need someone local to look, ask, make contact, confirm information, or help with a practical matter.</p>
+          </div>
+        </article>
+
+        <article class="signal">
+          <span class="signal-code">02 / LANGUAGE</span>
+          <div>
+            <h2 data-copy="languageTitle">Words that reach people</h2>
+            <p data-copy="languageText">Language lessons, everyday expression, emails, simple translation, and help understanding how your words may be received.</p>
+          </div>
+        </article>
+
+        <article class="signal">
+          <span class="signal-code">03 / BUSINESS</span>
+          <div>
+            <h2 data-copy="businessTitle">A first step across borders</h2>
+            <p data-copy="businessText">Basic research, local communication, and clear information for individuals and small businesses exploring Japan, China, France, or international work.</p>
+          </div>
+        </article>
+
+        <article class="signal">
+          <span class="signal-code">04 / CULTURE</span>
+          <div>
+            <h2 data-copy="cultureTitle">You do not have to explore alone</h2>
+            <p data-copy="cultureText">Cultural conversation, travel ideas, and human company for people who want more than information.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="boundary">
+        <p class="boundary-label">Clear / Honest</p>
+        <p data-copy="boundary">I do not promise to solve everything. If something is outside what I can responsibly do, I will say so before we begin.</p>
+      </section>
+
+      <section class="cta">
+        <div>
+          <h2 data-copy="cta">Tell me what you need someone here to do.</h2>
+          <p class="cta-note" data-copy="ctaNote">One question is enough to begin.</p>
+        </div>
+        <a href="mailto:hello@duchenplus.com?subject=Hello%20DUCHEN%2B" aria-label="Email DUCHEN+">↗</a>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> DU/CHEN+→</span>
+      <span data-copy="footer">culture / life / love / technology</span>
+    </footer>
+  </div>
+
+  <script>
+    const copy = {
+      en: {
+        back: "← Back",
+        headline: "Some things still need a person on the ground.",
+        lead: "Based in Japan, I can look, ask, explain, organize, or accompany—across languages and cultures. Start with one real need.",
+        localTitle: "Someone here in Japan",
+        localText: "When you need someone local to look, ask, make contact, confirm information, or help with a practical matter.",
+        languageTitle: "Words that reach people",
+        languageText: "Language lessons, everyday expression, emails, simple translation, and help understanding how your words may be received.",
+        businessTitle: "A first step across borders",
+        businessText: "Basic research, local communication, and clear information for individuals and small businesses exploring Japan, China, France, or international work.",
+        cultureTitle: "You do not have to explore alone",
+        cultureText: "Cultural conversation, travel ideas, and human company for people who want more than information.",
+        boundary: "I do not promise to solve everything. If something is outside what I can responsibly do, I will say so before we begin.",
+        cta: "Tell me what you need someone here to do.",
+        ctaNote: "One question is enough to begin.",
+        footer: "culture / life / love / technology"
+      },
+      zh: {
+        back: "← 返回",
+        headline: "有些事情，仍然需要一个人在现场。",
+        lead: "我在日本，可以替你去看、去问、去说明、去整理，也可以陪你一起了解。我们从一个真实的需要开始。",
+        localTitle: "一个在日本当地的人",
+        localText: "需要有人替你实地查看、询问、联系、确认信息，或协助处理一些当地事务时。",
+        languageTitle: "让语言真正抵达对方",
+        languageText: "语言学习、日常表达、邮件、简单翻译，以及一起确认：这样说，对方会怎样理解。",
+        businessTitle: "跨出去的第一步",
+        businessText: "为对日本、中国、法国或国际业务感兴趣的个人与小企业，协助基础调查、当地沟通和信息整理。",
+        cultureTitle: "探索不一定要一个人",
+        cultureText: "文化交流、旅行想法，以及为不只想得到信息的人，带来一点有人味的陪伴。",
+        boundary: "我不会承诺解决所有问题。如果事情超出我能够认真负责的范围，我会在开始前坦白告诉你。",
+        cta: "告诉我，你希望有人在这里替你做什么。",
+        ctaNote: "一个问题，就足以开始。",
+        footer: "文化 / 生活 / 爱 / 科技"
+      },
+      fr: {
+        back: "← Retour",
+        headline: "Certaines choses exigent encore une présence humaine sur place.",
+        lead: "Basée au Japon, je peux regarder, demander, expliquer, organiser ou vous accompagner, entre langues et cultures. Commençons par un besoin concret.",
+        localTitle: "Une présence au Japon",
+        localText: "Lorsque vous avez besoin de quelqu’un sur place pour regarder, demander, prendre contact, vérifier une information ou vous aider dans une démarche concrète.",
+        languageTitle: "Des mots qui atteignent l’autre",
+        languageText: "Cours de langue, expressions du quotidien, e-mails, traductions simples et aide pour comprendre comment vos mots seront reçus.",
+        businessTitle: "Un premier pas au-delà des frontières",
+        businessText: "Recherche de base, communication locale et informations claires pour les particuliers et petites entreprises tournés vers le Japon, la Chine, la France ou l’international.",
+        cultureTitle: "Explorer sans être seul",
+        cultureText: "Échanges culturels, idées de voyage et présence humaine pour celles et ceux qui cherchent plus que de l’information.",
+        boundary: "Je ne promets pas de tout résoudre. Si une demande dépasse ce que je peux faire de manière sérieuse et responsable, je vous le dirai avant de commencer.",
+        cta: "Dites-moi ce que vous aimeriez confier à quelqu’un sur place.",
+        ctaNote: "Une seule question suffit pour commencer.",
+        footer: "culture / vie / amour / technologie"
+      },
+      ja: {
+        back: "← 戻る",
+        headline: "現地にいる人だから、できることがあります。",
+        lead: "日本にいる私が、見て、聞いて、説明し、整理し、ときには一緒に考えます。まずは、ひとつの具体的なご相談から。",
+        localTitle: "日本で動ける人",
+        localText: "現地での確認、問い合わせ、連絡、情報収集、または身近な用事のサポートが必要なときに。",
+        languageTitle: "相手に届く言葉",
+        languageText: "語学レッスン、日常表現、メール、簡単な翻訳、そして「この言い方はどう伝わるか」を一緒に考えます。",
+        businessTitle: "国境を越える最初の一歩",
+        businessText: "日本・中国・フランスや海外との仕事に関心を持つ個人、小さな企業のための基礎調査、現地連絡、情報整理。",
+        cultureTitle: "ひとりではない探索",
+        cultureText: "文化についての対話、旅のアイデア、そして情報だけでは足りない方への、人の温度がある伴走。",
+        boundary: "すべてを解決できるとは約束しません。責任を持ってお引き受けできないことは、始める前に率直にお伝えします。",
+        cta: "現地の誰かにしてほしいことを、聞かせてください。",
+        ctaNote: "ひとつの質問から始められます。",
+        footer: "文化 / 暮らし / 愛 / テクノロジー"
+      }
+    };
+
+    const supportedLanguages = Object.keys(copy);
+    const params = new URLSearchParams(window.location.search);
+
+    function showLanguage(language) {
+      const selected = supportedLanguages.includes(language) ? language : "en";
+      document.documentElement.lang = selected === "zh" ? "zh-CN" : selected;
+
+      document.querySelectorAll("[data-copy]").forEach((element) => {
+        const value = copy[selected][element.dataset.copy];
+        if (value) element.textContent = value;
+      });
+
+      document.querySelectorAll(".language-switch [data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", button.dataset.lang === selected ? "true" : "false");
+      });
+
+      localStorage.setItem("duchen-language", selected);
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("lang", selected);
+      window.history.replaceState({}, "", nextUrl);
+    }
+
+    document.querySelectorAll(".language-switch [data-lang]").forEach((button) => {
+      button.addEventListener("click", () => showLanguage(button.dataset.lang));
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const requestedLanguage = params.get("lang");
+    const savedLanguage = localStorage.getItem("duchen-language");
+    showLanguage(supportedLanguages.includes(requestedLanguage) ? requestedLanguage : savedLanguage);
+  </script>
+</body>
+</html>
