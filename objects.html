@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DU/CHEN+ Objects — things made, found, or chosen along the way." />
+  <title>OBJECTS / DU/CHEN+→</title>
+  <style>
+    :root { --bg:#efeee8; --text:#24302f; --muted:#69716e; --line:rgba(36,48,47,0.16); --accent:#5f776f; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { min-height:100vh; background:var(--bg); color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1180px,calc(100% - 40px)); margin:0 auto; }
+    header { padding:28px 0 12px; display:flex; justify-content:space-between; align-items:center; font-size:14px; letter-spacing:.04em; }
+    .brand { font-weight:700; letter-spacing:-.02em; }
+    .mark { color:var(--accent); font-weight:500; }
+    .back { color:var(--muted); }
+    main { padding:88px 0 96px; }
+    .eyebrow { font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:28px; }
+    h1 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-size:clamp(54px,8vw,108px); line-height:.92; letter-spacing:-.045em; max-width:900px; }
+    .intro { margin-top:34px; max-width:650px; font-size:clamp(19px,2vw,28px); line-height:1.45; letter-spacing:-.025em; }
+    .quiet { margin-top:72px; border-top:1px solid var(--line); padding-top:22px; display:flex; justify-content:space-between; gap:24px; color:var(--muted); font-size:13px; }
+    footer { border-top:1px solid var(--line); padding:18px 0 28px; display:flex; justify-content:space-between; color:var(--muted); font-size:12px; }
+    @media (max-width:620px){ .shell{width:min(100% - 26px,1180px)} main{padding:68px 0 76px} .quiet,footer{flex-direction:column;gap:8px} }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" id="home-link" href="index.html">DU/CHEN<span class="mark">+→</span></a>
+      <a class="back" id="back-link" href="index.html">← HOME</a>
+    </header>
+
+    <main>
+      <div class="eyebrow">OBJECTS /</div>
+      <h1 data-i18n="headline">Things made, found, or chosen along the way.</h1>
+      <p class="intro" data-i18n="intro">A small room for objects that belong to the world of DU/CHEN+. Some may be made here. Some may simply be worth keeping.</p>
+
+      <div class="quiet">
+        <span data-i18n="status">First objects are still taking shape.</span>
+        <span>DU/CHEN+→</span>
+      </div>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> DU/CHEN<span class="mark">+→</span></span>
+      <span>culture / life / love / technology</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent=new Date().getFullYear();
+    const translations={
+      en:{headline:"Things made, found, or chosen along the way.",intro:"A small room for objects that belong to the world of DU/CHEN+. Some may be made here. Some may simply be worth keeping.",status:"First objects are still taking shape."},
+      zh:{headline:"一路做出的、发现的，或选择留下的东西。",intro:"这是属于 DU/CHEN+ 世界的一间小房间。有些东西会在这里诞生，有些只是值得被留下。",status:"第一批物件，还在慢慢成形。"},
+      fr:{headline:"Des objets créés, trouvés ou choisis en chemin.",intro:"Une petite pièce pour les objets qui appartiennent à l’univers de DU/CHEN+. Certains seront créés ici. D’autres méritent simplement d’être gardés.",status:"Les premiers objets prennent encore forme."},
+      ja:{headline:"つくったもの、見つけたもの、選んで残したもの。",intro:"DU/CHEN+ の世界に属する小さな部屋。ここで生まれるものもあれば、ただ残しておきたいものもあります。",status:"最初のものたちは、まだゆっくり形になっています。"}
+    };
+    const params=new URLSearchParams(window.location.search);
+    const saved=localStorage.getItem("duchen-language");
+    const lang=translations[params.get("lang")]?params.get("lang"):(translations[saved]?saved:"en");
+    document.documentElement.lang=lang==="zh"?"zh-CN":lang;
+    document.querySelectorAll("[data-i18n]").forEach(el=>{const value=translations[lang][el.dataset.i18n];if(value)el.textContent=value;});
+    document.getElementById("home-link").href=`index.html?lang=${lang}`;
+    document.getElementById("back-link").href=`index.html?lang=${lang}`;
+    localStorage.setItem("duchen-language",lang);
+  </script>
+</body>
+</html>
