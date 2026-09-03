@@ -176,7 +176,8 @@
     }
 
     .bridge-icon:hover,
-    .bridge-icon:focus-visible {
+    .bridge-icon:focus-visible,
+    .bridge-icon[aria-pressed="true"] {
       color: var(--accent);
       transform: translateY(-2px);
       outline: none;
@@ -345,16 +346,16 @@
   <div class="shell">
     <header>
       <div class="brand-small">DU/CHEN<span class="brand-mark">+→</span></div>
-      <div class="status">Tokyo · Online</div>
+      <div class="status" data-i18n="status">Tokyo · Online</div>
     </header>
 
     <main>
       <section class="hero">
         <div>
-          <div class="kicker">a personal space / always evolving</div>
+          <div class="kicker" data-i18n="kicker">a personal space / always evolving</div>
           <h1>DU<span class="slash">/</span>CHEN<span class="brand-mark">+→</span></h1>
           <p class="manifesto">
-            <span>culture × life × love × technology</span>
+            <span data-i18n="manifesto">culture × life × love × technology</span>
             <span class="language-kicker"><span>SELECT</span><span class="select-slash">/</span><span>BRIDGE</span></span>
             <span class="bridges" role="group" aria-label="Language selection">
               <button class="bridge-icon" type="button" aria-label="中文" data-lang="zh">
@@ -386,25 +387,25 @@
                 <span class="bridge-label">日本語</span>
               </button>
             </span>
-            <span>shedding / growth</span>
+            <span data-i18n="growth">shedding / growth</span>
           </p>
         </div>
 
         <nav aria-label="Primary">
-          <a class="nav-item" href="origin.html">
-            <span><span class="symbol">&lt;&gt;</span>Origin</span>
+          <a class="nav-item" id="origin-link" href="origin.html">
+            <span><span class="symbol">&lt;&gt;</span><span data-i18n="origin">Origin</span></span>
           </a>
           <a class="nav-item" href="#consult">
-            <span><span class="symbol">/ +</span>Consult</span>
+            <span><span class="symbol">/ +</span><span data-i18n="consult">Consult</span></span>
           </a>
           <a class="nav-item" href="#notes">
-            <span><span class="symbol">//</span>Notes</span>
+            <span><span class="symbol">//</span><span data-i18n="notes">Notes</span></span>
           </a>
           <a class="nav-item" href="#life">
-            <span><span class="symbol">♥</span>Life</span>
+            <span><span class="symbol">♥</span><span data-i18n="life">Life</span></span>
           </a>
           <a class="nav-item" href="mailto:hello@duchenplus.com">
-            <span><span class="symbol">→</span>Connect</span>
+            <span><span class="symbol">→</span><span data-i18n="connect">Connect</span></span>
           </a>
         </nav>
       </section>
@@ -412,20 +413,89 @@
 
     <footer>
       <span>© <span id="year"></span> <span class="brand-footer">DU/CHEN<span class="brand-mark">+→</span></span></span>
-      <span>culture / life / love / technology</span>
+      <span data-i18n="footer">culture / life / love / technology</span>
     </footer>
   </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    const translations = {
+      en: {
+        status: "Tokyo · Online",
+        kicker: "a personal space / always evolving",
+        manifesto: "culture × life × love × technology",
+        growth: "shedding / growth",
+        origin: "Origin",
+        consult: "Consult",
+        notes: "Notes",
+        life: "Life",
+        connect: "Connect",
+        footer: "culture / life / love / technology"
+      },
+      zh: {
+        status: "东京 · 在线",
+        kicker: "一个个人空间 / 持续生长",
+        manifesto: "文化 × 生活 × 爱 × 科技",
+        growth: "舍弃 / 成长",
+        origin: "起点",
+        consult: "协助",
+        notes: "随笔",
+        life: "生活",
+        connect: "联系",
+        footer: "文化 / 生活 / 爱 / 科技"
+      },
+      fr: {
+        status: "Tokyo · En ligne",
+        kicker: "un espace personnel / en mouvement",
+        manifesto: "culture × vie × amour × technologie",
+        growth: "se délester / grandir",
+        origin: "Origine",
+        consult: "Accompagnement",
+        notes: "Notes",
+        life: "Vie",
+        connect: "Contact",
+        footer: "culture / vie / amour / technologie"
+      },
+      ja: {
+        status: "東京 · オンライン",
+        kicker: "個人のための空間 / 変化し続ける",
+        manifesto: "文化 × 暮らし × 愛 × テクノロジー",
+        growth: "手放す / 成長する",
+        origin: "原点",
+        consult: "サポート",
+        notes: "ノート",
+        life: "暮らし",
+        connect: "つながる",
+        footer: "文化 / 暮らし / 愛 / テクノロジー"
+      }
+    };
+
+    function setLanguage(language) {
+      const copy = translations[language] || translations.en;
+      document.documentElement.lang = language === "zh" ? "zh-CN" : language;
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = copy[element.dataset.i18n];
+        if (value) element.textContent = value;
+      });
+
+      document.querySelectorAll(".bridge-icon[data-lang]").forEach((bridge) => {
+        bridge.setAttribute("aria-pressed", bridge.dataset.lang === language ? "true" : "false");
+      });
+
+      document.getElementById("origin-link").href = `origin.html?lang=${language}`;
+      localStorage.setItem("duchen-language", language);
+    }
+
     document.querySelectorAll(".bridge-icon[data-lang]").forEach((bridge) => {
       bridge.addEventListener("click", () => {
-        const language = bridge.dataset.lang;
-        localStorage.setItem("duchen-language", language);
-        window.location.href = `origin.html?lang=${language}`;
+        setLanguage(bridge.dataset.lang);
       });
     });
+
+    const savedLanguage = localStorage.getItem("duchen-language");
+    setLanguage(translations[savedLanguage] ? savedLanguage : "en");
   </script>
 </body>
 </html>
