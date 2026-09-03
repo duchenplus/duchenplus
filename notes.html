@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DU/CHEN+ notes on culture, life, love, and technology." />
+  <title>Notes — DU/CHEN+→</title>
+  <style>
+    :root {
+      --bg: #efeee8;
+      --text: #24302f;
+      --muted: #69716e;
+      --line: rgba(36, 48, 47, 0.16);
+      --accent: #5f776f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", "Noto Sans", "Noto Sans CJK SC", Helvetica, Arial, sans-serif;
+    }
+
+    button,
+    a {
+      color: inherit;
+      font: inherit;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand {
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark,
+    .slash {
+      color: var(--accent);
+    }
+
+    .back {
+      color: var(--muted);
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    .back:hover,
+    .back:focus-visible {
+      color: var(--accent);
+      transform: translateX(-3px);
+      outline: none;
+    }
+
+    main {
+      padding: clamp(68px, 9vw, 120px) 0 94px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(240px, 0.55fr);
+      gap: clamp(48px, 8vw, 104px);
+      align-items: end;
+    }
+
+    .eyebrow,
+    .card-code,
+    .card-index,
+    .closing-label {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      margin-bottom: 28px;
+      color: var(--accent);
+    }
+
+    h1 {
+      max-width: 880px;
+      font-size: clamp(48px, 7.4vw, 92px);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      font-weight: 720;
+    }
+
+    .lead {
+      max-width: 700px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.58;
+      letter-spacing: -0.02em;
+    }
+
+    .language-switch {
+      border-top: 1px solid var(--line);
+    }
+
+    .language-switch button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: left;
+      transition: color 180ms ease, padding-left 180ms ease;
+    }
+
+    .language-switch button::after {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0;
+    }
+
+    .language-switch button:hover,
+    .language-switch button:focus-visible,
+    .language-switch button[aria-pressed="true"] {
+      padding-left: 7px;
+      color: var(--accent);
+      outline: none;
+    }
+
+    .language-switch button[aria-pressed="true"]::after {
+      opacity: 1;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: clamp(84px, 12vw, 154px);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .note-card {
+      --tone: 95, 119, 111;
+      position: relative;
+      isolation: isolate;
+      min-height: 430px;
+      overflow: hidden;
+      padding: clamp(26px, 4vw, 46px);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      outline: none;
+    }
+
+    .note-card::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -1px;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(var(--tone), 0.23), transparent 42%),
+        linear-gradient(145deg, transparent 45%, rgba(var(--tone), 0.08));
+      opacity: 0;
+      transform: scale(1.04);
+      transition: opacity 350ms ease, transform 500ms ease;
+    }
+
+    .note-card:hover::before,
+    .note-card:focus-visible::before {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .note-card.culture { --tone: 79, 113, 101; }
+    .note-card.life { --tone: 160, 132, 92; }
+    .note-card.love { --tone: 151, 100, 106; }
+    .note-card.technology { --tone: 79, 105, 128; }
+
+    .card-top,
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .card-code {
+      color: rgb(var(--tone));
+    }
+
+    .card-index,
+    .card-bottom {
+      color: var(--muted);
+    }
+
+    .note-card h2 {
+      max-width: 500px;
+      margin: 62px 0 21px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(31px, 3.8vw, 50px);
+      line-height: 1.06;
+      font-weight: 400;
+      letter-spacing: -0.045em;
+    }
+
+    .note-card p {
+      max-width: 500px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.72;
+    }
+
+    .card-bottom {
+      margin-top: 48px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .arrow {
+      color: rgb(var(--tone));
+      font-size: 18px;
+      transition: transform 220ms ease;
+    }
+
+    .note-card:hover .arrow,
+    .note-card:focus-visible .arrow {
+      transform: translate(3px, -3px);
+    }
+
+    .closing {
+      display: grid;
+      grid-template-columns: 0.42fr 0.58fr;
+      gap: clamp(44px, 8vw, 100px);
+      margin-top: clamp(82px, 12vw, 145px);
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .closing-label {
+      color: var(--accent);
+    }
+
+    .closing p {
+      max-width: 700px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(25px, 3vw, 39px);
+      line-height: 1.35;
+      letter-spacing: -0.035em;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0 30px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .hero,
+      .closing {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        gap: 50px;
+      }
+
+      .language-switch {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-left: 1px solid var(--line);
+      }
+
+      .language-switch button {
+        padding: 13px 14px;
+        border-right: 1px solid var(--line);
+      }
+
+      .language-switch button:hover,
+      .language-switch button:focus-visible,
+      .language-switch button[aria-pressed="true"] {
+        padding-left: 18px;
+      }
+
+      .notes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .note-card {
+        min-height: 370px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(100% - 26px, 1160px);
+      }
+
+      header {
+        min-height: 66px;
+      }
+
+      main {
+        padding-top: 56px;
+      }
+
+      h1 {
+        font-size: clamp(43px, 13vw, 60px);
+      }
+
+      .note-card {
+        min-height: 340px;
+        padding: 25px 22px;
+      }
+
+      .note-card h2 {
+        margin-top: 48px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 7px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="index.html" aria-label="DUCHEN+ home">DU<span class="slash">/</span>CHEN<span class="brand-mark">+→</span></a>
+      <a class="back" href="index.html" data-copy="back">← Back</a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="notes-title">
+        <div>
+          <p class="eyebrow">// Notes / 003</p>
+          <h1 id="notes-title" data-copy="headline">Four ways of seeing. One changing world.</h1>
+          <p class="lead" data-copy="lead">Fragments of what I notice, learn, and continue to question between culture, life, love, and technology.</p>
+        </div>
+
+        <nav class="language-switch" aria-label="Choose language">
+          <button type="button" data-lang="zh">中文</button>
+          <button type="button" data-lang="fr">Français</button>
+          <button type="button" data-lang="en">English</button>
+          <button type="button" data-lang="ja">日本語</button>
+        </nav>
+      </section>
+
+      <section class="notes-grid" aria-label="Note themes">
+        <article class="note-card culture" tabindex="0">
+          <div>
+            <div class="card-top">
+              <span class="card-code">01 / CULTURE</span>
+              <span class="card-index">NOTE 001</span>
+            </div>
+            <h2 data-copy="cultureTitle">One sentence, four distances</h2>
+            <p data-copy="cultureText">The same words can place people at entirely different distances in Chinese, Japanese, English, and French.</p>
+          </div>
+          <div class="card-bottom"><span data-copy="firstNote">first note</span><span class="arrow">↗</span></div>
+        </article>
+
+        <article class="note-card life" tabindex="0">
+          <div>
+            <div class="card-top">
+              <span class="card-code">02 / LIFE</span>
+              <span class="card-index">NOTE 002</span>
+            </div>
+            <h2 data-copy="lifeTitle">What do we shed in order to grow?</h2>
+            <p data-copy="lifeText">Growth is not always about gaining more. Sometimes it begins by recognizing what can be released.</p>
+          </div>
+          <div class="card-bottom"><span data-copy="firstNote">first note</span><span class="arrow">↗</span></div>
+        </article>
+
+        <article class="note-card love" tabindex="0">
+          <div>
+            <div class="card-top">
+              <span class="card-code">03 / LOVE</span>
+              <span class="card-index">NOTE 003</span>
+            </div>
+            <h2 data-copy="loveTitle">Presence does not always need an answer</h2>
+            <p data-copy="loveText">Sometimes we do not need to be fixed. We need someone willing to walk beside us for a while.</p>
+          </div>
+          <div class="card-bottom"><span data-copy="firstNote">first note</span><span class="arrow">↗</span></div>
+        </article>
+
+        <article class="note-card technology" tabindex="0">
+          <div>
+            <div class="card-top">
+              <span class="card-code">04 / TECHNOLOGY</span>
+              <span class="card-index">NOTE 004</span>
+            </div>
+            <h2 data-copy="technologyTitle">AI knows information. People know feeling.</h2>
+            <p data-copy="technologyText">Technology brings speed and reach. People bring lived experience, judgment, and warmth.</p>
+          </div>
+          <div class="card-bottom"><span data-copy="firstNote">first note</span><span class="arrow">↗</span></div>
+        </article>
+      </section>
+
+      <section class="closing">
+        <p class="closing-label">Ongoing / Archive</p>
+        <p data-copy="closing">This archive will grow slowly—one honest observation at a time.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> DU/CHEN+→</span>
+      <span data-copy="footer">culture / life / love / technology</span>
+    </footer>
+  </div>
+
+  <script>
+    const copy = {
+      en: {
+        back: "← Back",
+        headline: "Four ways of seeing. One changing world.",
+        lead: "Fragments of what I notice, learn, and continue to question between culture, life, love, and technology.",
+        cultureTitle: "One sentence, four distances",
+        cultureText: "The same words can place people at entirely different distances in Chinese, Japanese, English, and French.",
+        lifeTitle: "What do we shed in order to grow?",
+        lifeText: "Growth is not always about gaining more. Sometimes it begins by recognizing what can be released.",
+        loveTitle: "Presence does not always need an answer",
+        loveText: "Sometimes we do not need to be fixed. We need someone willing to walk beside us for a while.",
+        technologyTitle: "AI knows information. People know feeling.",
+        technologyText: "Technology brings speed and reach. People bring lived experience, judgment, and warmth.",
+        firstNote: "first note",
+        closing: "This archive will grow slowly—one honest observation at a time.",
+        footer: "culture / life / love / technology"
+      },
+      zh: {
+        back: "← 返回",
+        headline: "四种观看世界的方式。一个不断变化的世界。",
+        lead: "记录我在文化、生活、爱与技术之间看到、学到，以及仍在追问的片段。",
+        cultureTitle: "一句话，四种距离",
+        cultureText: "同一句话，在中文、日语、英语和法语里，会把人与人放在不同的位置。",
+        lifeTitle: "舍弃什么，才能继续成长？",
+        lifeText: "成长有时并不是拥有更多，而是辨认什么已经可以放下。",
+        loveTitle: "陪伴，不一定需要答案",
+        loveText: "有时候，我们需要的不是被解决，而是有人愿意一起走一段。",
+        technologyTitle: "AI 知道信息，人知道感觉",
+        technologyText: "技术带来速度和范围，而人带来亲身经验、判断与温度。",
+        firstNote: "第一笔记",
+        closing: "这个档案会慢慢生长——一次记录一个真实的发现。",
+        footer: "文化 / 生活 / 爱 / 科技"
+      },
+      fr: {
+        back: "← Retour",
+        headline: "Quatre façons de voir. Un monde en mouvement.",
+        lead: "Des fragments de ce que j’observe, apprends et continue d’interroger entre culture, vie, amour et technologie.",
+        cultureTitle: "Une phrase, quatre distances",
+        cultureText: "Les mêmes mots peuvent placer les personnes à des distances très différentes en chinois, japonais, anglais et français.",
+        lifeTitle: "Que faut-il laisser pour continuer à grandir ?",
+        lifeText: "Grandir ne signifie pas toujours accumuler davantage. Parfois, tout commence lorsqu’on reconnaît ce que l’on peut laisser partir.",
+        loveTitle: "La présence n’a pas toujours besoin de réponse",
+        loveText: "Parfois, nous n’avons pas besoin d’être réparés, mais de quelqu’un qui accepte de marcher un moment à nos côtés.",
+        technologyTitle: "L’IA connaît l’information. L’humain connaît le ressenti.",
+        technologyText: "La technologie apporte vitesse et portée. L’humain apporte l’expérience vécue, le jugement et la chaleur.",
+        firstNote: "première note",
+        closing: "Ces archives grandiront lentement — une observation sincère à la fois.",
+        footer: "culture / vie / amour / technologie"
+      },
+      ja: {
+        back: "← 戻る",
+        headline: "四つのまなざし。変わり続ける、ひとつの世界。",
+        lead: "文化、暮らし、愛、テクノロジーの間で、気づいたこと、学んだこと、そして問い続けていることの断片。",
+        cultureTitle: "ひとつの言葉、四つの距離",
+        cultureText: "同じ言葉でも、中国語、日本語、英語、フランス語では、人と人との距離がまったく違って見えることがあります。",
+        lifeTitle: "成長するために、何を手放す？",
+        lifeText: "成長は、何かを増やすことだけではありません。もう手放してよいものに気づくことから始まる場合もあります。",
+        loveTitle: "寄り添うことに、答えはいらない",
+        loveText: "解決してもらうことより、しばらく一緒に歩いてくれる誰かが必要なときがあります。",
+        technologyTitle: "AI は情報を知り、人は感覚を知る",
+        technologyText: "テクノロジーは速さと広がりを、人は実際の経験、判断、そして温度をもたらします。",
+        firstNote: "最初のノート",
+        closing: "このアーカイブは、ひとつの誠実な気づきとともに、ゆっくり育っていきます。",
+        footer: "文化 / 暮らし / 愛 / テクノロジー"
+      }
+    };
+
+    const supportedLanguages = Object.keys(copy);
+    const params = new URLSearchParams(window.location.search);
+
+    function showLanguage(language) {
+      const selected = supportedLanguages.includes(language) ? language : "en";
+      document.documentElement.lang = selected === "zh" ? "zh-CN" : selected;
+
+      document.querySelectorAll("[data-copy]").forEach((element) => {
+        const value = copy[selected][element.dataset.copy];
+        if (value) element.textContent = value;
+      });
+
+      document.querySelectorAll(".language-switch [data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", button.dataset.lang === selected ? "true" : "false");
+      });
+
+      localStorage.setItem("duchen-language", selected);
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("lang", selected);
+      window.history.replaceState({}, "", nextUrl);
+    }
+
+    document.querySelectorAll(".language-switch [data-lang]").forEach((button) => {
+      button.addEventListener("click", () => showLanguage(button.dataset.lang));
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const requestedLanguage = params.get("lang");
+    const savedLanguage = localStorage.getItem("duchen-language");
+    showLanguage(supportedLanguages.includes(requestedLanguage) ? requestedLanguage : savedLanguage);
+  </script>
+</body>
+</html>
