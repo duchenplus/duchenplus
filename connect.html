@@ -6,7 +6,7 @@
   <meta name="description" content="Connect with DU/CHEN+" />
   <title>CONNECT / DU/CHEN+→</title>
   <style>
-    :root { --bg:#efeee8; --text:#24302f; --muted:#69716e; --line:rgba(36,48,47,0.16); --accent:#5f776f; }
+    :root { --bg:#efeee8; --text:#24302f; --muted:#69716e; --line:rgba(36,48,47,0.16); --accent:#5f776f; --accent-soft:rgba(95,119,111,.07); }
     * { box-sizing:border-box; margin:0; padding:0; }
     body { min-height:100vh; background:var(--bg); color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
     a { color:inherit; text-decoration:none; }
@@ -19,7 +19,11 @@
     .eyebrow { font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:28px; }
     h1 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-size:clamp(54px,8vw,108px); line-height:.92; letter-spacing:-.045em; max-width:900px; }
     .intro { margin-top:34px; max-width:640px; font-size:clamp(19px,2vw,28px); line-height:1.45; letter-spacing:-.025em; }
-    .routes { margin-top:72px; border-top:1px solid var(--line); }
+    .start-here { margin-top:56px; padding:24px 0 28px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); display:grid; grid-template-columns:180px 1fr; gap:24px; background:linear-gradient(90deg,var(--accent-soft),transparent 58%); }
+    .start-label { font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; font-size:13px; letter-spacing:.1em; color:var(--accent); }
+    .start-copy { max-width:690px; font-size:18px; line-height:1.65; }
+    .start-copy p + p { margin-top:4px; }
+    .routes { margin-top:34px; border-top:1px solid var(--line); }
     .route { display:grid; grid-template-columns:180px 1fr auto; gap:24px; align-items:start; padding:26px 0; border-bottom:1px solid var(--line); }
     .route-label { font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; font-size:13px; letter-spacing:.08em; color:var(--accent); }
     .route-copy { font-size:18px; line-height:1.5; max-width:650px; }
@@ -28,7 +32,7 @@
     .email { margin-top:54px; color:var(--muted); font-size:14px; }
     .email strong { color:var(--text); font-weight:500; }
     footer { border-top:1px solid var(--line); padding:18px 0 28px; display:flex; justify-content:space-between; color:var(--muted); font-size:12px; }
-    @media (max-width:720px){ .route{grid-template-columns:1fr;gap:10px}.route-link{margin-top:2px} }
+    @media (max-width:720px){ .start-here,.route{grid-template-columns:1fr;gap:10px}.route-link{margin-top:2px} }
     @media (max-width:620px){ .shell{width:min(100% - 26px,1180px)} main{padding:68px 0 76px} footer{flex-direction:column;gap:8px} }
   </style>
 </head>
@@ -43,6 +47,15 @@
       <div class="eyebrow">CONNECT /</div>
       <h1 data-i18n="headline">Tell me what you need.</h1>
       <p class="intro" data-i18n="intro">A question, an idea, something you need help understanding, or something you want done in Japan — start here.</p>
+
+      <section class="start-here" aria-label="Start here">
+        <div class="start-label">START HERE /</div>
+        <div class="start-copy">
+          <p data-i18n="start1">Tell me what you need.</p>
+          <p data-i18n="start2">If a quick answer is enough, I’ll tell you.</p>
+          <p data-i18n="start3">If it needs real work, we can decide the next step together.</p>
+        </div>
+      </section>
 
       <div class="routes">
         <a class="route" href="mailto:hello@duchenplus.com?subject=ASK%20%2F%20DUCHEN%2B">
@@ -70,10 +83,10 @@
   <script>
     document.getElementById("year").textContent=new Date().getFullYear();
     const translations={
-      en:{headline:"Tell me what you need.",intro:"A question, an idea, something you need help understanding, or something you want done in Japan — start here.",ask:"Tell me what is happening. I can first help you understand the situation and see what may be possible.",write:"WRITE →",work:"For translation, research, local support in Japan, coordination, cultural context, or a project that needs hands-on help.",consult:"CONSULT →",emailLabel:"Email"},
-      zh:{headline:"告诉我，你需要什么。",intro:"一个问题、一个想法、一件你想弄明白的事，或者一件希望有人在日本替你完成的事——可以从这里开始。",ask:"先告诉我发生了什么。我可以先帮你理解情况，看看有哪些可能。",write:"写给我 →",work:"如果你需要翻译、调查、日本现地协助、协调、文化背景说明，或需要实际推进的项目，可以从这里进入。",consult:"进入协助 →",emailLabel:"邮箱"},
-      fr:{headline:"Dites-moi ce dont vous avez besoin.",intro:"Une question, une idée, quelque chose à comprendre ou quelque chose à faire au Japon — commencez ici.",ask:"Expliquez-moi d’abord la situation. Je peux vous aider à la comprendre et à voir ce qui est possible.",write:"ÉCRIRE →",work:"Pour une traduction, une recherche, un soutien local au Japon, une coordination, un contexte culturel ou un projet qui demande une aide concrète.",consult:"CONSULTER →",emailLabel:"E-mail"},
-      ja:{headline:"必要なことを、教えてください。",intro:"質問でも、アイデアでも、理解したいことでも、日本で誰かに動いてほしいことでも。ここから始められます。",ask:"まず、何が起きているのか教えてください。状況を整理し、何ができそうか一緒に考えます。",write:"メールする →",work:"翻訳、調査、日本での現地サポート、調整、文化的な背景説明、実際に動く必要のあるプロジェクトはこちらから。",consult:"相談する →",emailLabel:"メール"}
+      en:{headline:"Tell me what you need.",intro:"A question, an idea, something you need help understanding, or something you want done in Japan — start here.",start1:"Tell me what you need.",start2:"If a quick answer is enough, I’ll tell you.",start3:"If it needs real work, we can decide the next step together.",ask:"Tell me what is happening. I can first help you understand the situation and see what may be possible.",write:"WRITE →",work:"For translation, research, local support in Japan, coordination, cultural context, or a project that needs hands-on help.",consult:"CONSULT →",emailLabel:"Email"},
+      zh:{headline:"告诉我，你需要什么。",intro:"一个问题、一个想法、一件你想弄明白的事，或者一件希望有人在日本替你完成的事——可以从这里开始。",start1:"告诉我，你需要什么。",start2:"如果一个简短的回答就够了，我会直接告诉你。",start3:"如果它需要真正投入时间去做，我们可以一起决定下一步。",ask:"先告诉我发生了什么。我可以先帮你理解情况，看看有哪些可能。",write:"写给我 →",work:"如果你需要翻译、调查、日本现地协助、协调、文化背景说明，或需要实际推进的项目，可以从这里进入。",consult:"进入协助 →",emailLabel:"邮箱"},
+      fr:{headline:"Dites-moi ce dont vous avez besoin.",intro:"Une question, une idée, quelque chose à comprendre ou quelque chose à faire au Japon — commencez ici.",start1:"Dites-moi ce dont vous avez besoin.",start2:"Si une réponse rapide suffit, je vous le dirai.",start3:"Si cela demande un vrai travail, nous pourrons décider ensemble de la suite.",ask:"Expliquez-moi d’abord la situation. Je peux vous aider à la comprendre et à voir ce qui est possible.",write:"ÉCRIRE →",work:"Pour une traduction, une recherche, un soutien local au Japon, une coordination, un contexte culturel ou un projet qui demande une aide concrète.",consult:"CONSULTER →",emailLabel:"E-mail"},
+      ja:{headline:"必要なことを、教えてください。",intro:"質問でも、アイデアでも、理解したいことでも、日本で誰かに動いてほしいことでも。ここから始められます。",start1:"必要なことを、教えてください。",start2:"短い答えで十分なら、そのままお伝えします。",start3:"実際に時間をかけて動く必要があるなら、次の一歩を一緒に決めましょう。",ask:"まず、何が起きているのか教えてください。状況を整理し、何ができそうか一緒に考えます。",write:"メールする →",work:"翻訳、調査、日本での現地サポート、調整、文化的な背景説明、実際に動く必要のあるプロジェクトはこちらから。",consult:"相談する →",emailLabel:"メール"}
     };
     const params=new URLSearchParams(window.location.search);
     const saved=localStorage.getItem("duchen-language");
