@@ -72,7 +72,7 @@
           <a class="nav-item" id="notes-link" href="notes.html"><span><span class="symbol">//</span><span data-i18n="notes">Notes</span></span></a>
           <a class="nav-item" id="scenes-link" href="scenes.html"><span><span class="symbol">♥</span><span data-i18n="scenes">Scenes</span></span></a>
           <a class="nav-item" id="objects-link" href="objects.html"><span><span class="symbol">□</span><span data-i18n="objects">Objects</span></span></a>
-          <a class="nav-item" href="mailto:hello@duchenplus.com"><span><span class="symbol">→</span><span data-i18n="connect">Connect</span></span></a>
+          <a class="nav-item" id="connect-link" href="connect.html"><span><span class="symbol">→</span><span data-i18n="connect">Connect</span></span></a>
         </nav>
       </section>
     </main>
@@ -96,6 +96,7 @@
       document.getElementById("notes-link").href=`notes.html?lang=${language}`;
       document.getElementById("scenes-link").href=`scenes.html?lang=${language}`;
       document.getElementById("objects-link").href=`objects.html?lang=${language}`;
+      document.getElementById("connect-link").href=`connect.html?lang=${language}`;
       localStorage.setItem("duchen-language",language);
     }
     document.querySelectorAll(".bridge-icon[data-lang]").forEach((bridge)=>{bridge.addEventListener("click",()=>setLanguage(bridge.dataset.lang));});
