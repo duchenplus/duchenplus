@@ -1,0 +1,48 @@
+:root {
+  --bg: #efeee8;
+  --text: #24302f;
+  --muted: #69716e;
+  --line: rgba(36,48,47,.16);
+  --accent: #5f776f;
+  --accent-soft: rgba(95,119,111,.10);
+  --page: 1120px;
+  --mobile-gutter: 26px;
+  --header-h: 82px;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Noto Sans CJK SC", Helvetica, Arial, sans-serif;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg) !important; color: var(--text) !important; font-family: var(--sans) !important; }
+.shell { width: min(var(--page), calc(100% - 40px)) !important; margin: 0 auto !important; }
+header { min-height: var(--header-h); padding-top: 0 !important; padding-bottom: 0 !important; display:flex; align-items:center; border-bottom:1px solid var(--line); }
+.brand, .brand-small, .brand-footer { font-weight: 750; letter-spacing:-.02em; }
+.brand-mark, .mark, .slash { color: var(--accent) !important; }
+.back { color: var(--muted); transition: color 180ms ease, transform 180ms ease; }
+.back:hover, .back:focus-visible { color: var(--accent); transform: translateX(-3px); outline:none; }
+.eyebrow, .kicker, .section-label, .route-label, .signal-code, .boundary-label { font-family:var(--mono) !important; letter-spacing:.14em; }
+footer { border-top:1px solid var(--line) !important; color:var(--muted) !important; padding:20px 0 30px !important; }
+
+/* Shared editorial rhythm */
+main { padding-top: clamp(68px, 9vw, 118px); padding-bottom: 94px; }
+p { text-wrap: pretty; }
+h1, h2 { text-wrap: balance; }
+
+/* Gallery-like pages */
+.objects-grid, .scene-grid, .gallery, .slots { gap: clamp(16px,2vw,28px) !important; }
+.image-slot, .scene-slot, .slot { border-color: var(--line) !important; background: rgba(255,255,255,.08); }
+
+/* Interactive rows */
+.route, .nav-item, .signal, .card { transition: background 180ms ease, color 180ms ease, transform 180ms ease, padding-left 180ms ease; }
+.route:hover, .signal:hover, .card:hover { background: var(--accent-soft); }
+
+@media (max-width: 760px) {
+  header { min-height: 66px; }
+  main { padding-top: 58px; padding-bottom: 76px; }
+}
+
+@media (max-width: 520px) {
+  .shell { width: min(100% - var(--mobile-gutter), var(--page)) !important; }
+  footer { flex-direction:column; gap:7px; }
+}
