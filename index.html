@@ -357,28 +357,28 @@
             <span>culture × life × love × technology</span>
             <span class="language-kicker"><span>SELECT</span><span class="select-slash">/</span><span>BRIDGE</span></span>
             <span class="bridges" role="group" aria-label="Language selection">
-              <button class="bridge-icon" type="button" aria-label="中文">
+              <button class="bridge-icon" type="button" aria-label="中文" data-lang="zh">
                 <svg viewBox="0 0 72 34" aria-hidden="true">
                   <path d="M4 28h64M8 27c7-1 11-5 15-11 4-6 8-9 13-9s9 3 13 9c4 6 8 10 15 11" />
                   <path d="M14 23v5M58 23v5M27 12h18M31 8l5-4 5 4M29 8h14v4H29z" />
                 </svg>
                 <span class="bridge-label">中文</span>
               </button>
-              <button class="bridge-icon" type="button" aria-label="Français">
+              <button class="bridge-icon" type="button" aria-label="Français" data-lang="fr">
                 <svg viewBox="0 0 72 34" aria-hidden="true">
                   <path d="M4 28h64M7 23h58M9 23c3-9 9-13 16-13s13 4 16 13M41 23c3-7 7-10 12-10s9 3 12 10" />
                   <path d="M8 18v10M66 18v10M7 18h3M65 18h3M9 14v4M67 14v4" />
                 </svg>
                 <span class="bridge-label">Français</span>
               </button>
-              <button class="bridge-icon" type="button" aria-label="English">
+              <button class="bridge-icon" type="button" aria-label="English" data-lang="en">
                 <svg viewBox="0 0 72 34" aria-hidden="true">
                   <path d="M4 28h64M5 22h62M14 22V9h10v13M48 22V9h10v13" />
                   <path d="M13 9l6-5 6 5M47 9l6-5 6 5M24 13c7 0 9 5 12 5s5-5 12-5M19 9v13M53 9v13" />
                 </svg>
                 <span class="bridge-label">English</span>
               </button>
-              <button class="bridge-icon" type="button" aria-label="日本語">
+              <button class="bridge-icon" type="button" aria-label="日本語" data-lang="ja">
                 <svg viewBox="0 0 72 34" aria-hidden="true">
                   <path d="M4 28h64M8 24c8 0 12-2 17-6 4-3 7-5 11-5s7 2 11 5c5 4 9 6 17 6" />
                   <path d="M10 20v8M62 20v8M15 22v6M57 22v6M8 19h8M56 19h8M10 16v3M62 16v3" />
@@ -391,7 +391,7 @@
         </div>
 
         <nav aria-label="Primary">
-          <a class="nav-item" href="#origin">
+          <a class="nav-item" href="origin.html">
             <span><span class="symbol">&lt;&gt;</span>Origin</span>
           </a>
           <a class="nav-item" href="#consult">
@@ -418,6 +418,14 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll(".bridge-icon[data-lang]").forEach((bridge) => {
+      bridge.addEventListener("click", () => {
+        const language = bridge.dataset.lang;
+        localStorage.setItem("duchen-language", language);
+        window.location.href = `origin.html?lang=${language}`;
+      });
+    });
   </script>
 </body>
 </html>
