@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Connect with DU/CHEN+" />
+  <title>CONNECT / DU/CHEN+→</title>
+  <style>
+    :root { --bg:#efeee8; --text:#24302f; --muted:#69716e; --line:rgba(36,48,47,0.16); --accent:#5f776f; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { min-height:100vh; background:var(--bg); color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1180px,calc(100% - 40px)); margin:0 auto; }
+    header { padding:28px 0 12px; display:flex; justify-content:space-between; align-items:center; font-size:14px; letter-spacing:.04em; }
+    .brand { font-weight:700; letter-spacing:-.02em; }
+    .mark { color:var(--accent); font-weight:500; }
+    .back { color:var(--muted); }
+    main { padding:88px 0 96px; }
+    .eyebrow { font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:28px; }
+    h1 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-size:clamp(54px,8vw,108px); line-height:.92; letter-spacing:-.045em; max-width:900px; }
+    .intro { margin-top:34px; max-width:640px; font-size:clamp(19px,2vw,28px); line-height:1.45; letter-spacing:-.025em; }
+    .routes { margin-top:72px; border-top:1px solid var(--line); }
+    .route { display:grid; grid-template-columns:180px 1fr auto; gap:24px; align-items:start; padding:26px 0; border-bottom:1px solid var(--line); }
+    .route-label { font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; font-size:13px; letter-spacing:.08em; color:var(--accent); }
+    .route-copy { font-size:18px; line-height:1.5; max-width:650px; }
+    .route-link { font-size:14px; color:var(--muted); white-space:nowrap; }
+    .route:hover .route-link { color:var(--accent); }
+    .email { margin-top:54px; color:var(--muted); font-size:14px; }
+    .email strong { color:var(--text); font-weight:500; }
+    footer { border-top:1px solid var(--line); padding:18px 0 28px; display:flex; justify-content:space-between; color:var(--muted); font-size:12px; }
+    @media (max-width:720px){ .route{grid-template-columns:1fr;gap:10px}.route-link{margin-top:2px} }
+    @media (max-width:620px){ .shell{width:min(100% - 26px,1180px)} main{padding:68px 0 76px} footer{flex-direction:column;gap:8px} }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" id="home-link" href="index.html">DU/CHEN<span class="mark">+→</span></a>
+      <a class="back" id="back-link" href="index.html">← HOME</a>
+    </header>
+
+    <main>
+      <div class="eyebrow">CONNECT /</div>
+      <h1 data-i18n="headline">Tell me what you need.</h1>
+      <p class="intro" data-i18n="intro">A question, an idea, something you need help understanding, or something you want done in Japan — start here.</p>
+
+      <div class="routes">
+        <a class="route" href="mailto:hello@duchenplus.com?subject=ASK%20%2F%20DUCHEN%2B">
+          <div class="route-label">ASK /</div>
+          <div class="route-copy" data-i18n="ask">Tell me what is happening. I can first help you understand the situation and see what may be possible.</div>
+          <div class="route-link" data-i18n="write">WRITE →</div>
+        </a>
+
+        <a class="route" id="work-link" href="consult.html">
+          <div class="route-label">WORK WITH ME /</div>
+          <div class="route-copy" data-i18n="work">For translation, research, local support in Japan, coordination, cultural context, or a project that needs hands-on help.</div>
+          <div class="route-link" data-i18n="consult">CONSULT →</div>
+        </a>
+      </div>
+
+      <p class="email"><span data-i18n="emailLabel">Email</span> · <strong>hello@duchenplus.com</strong></p>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> DU/CHEN<span class="mark">+→</span></span>
+      <span>culture / life / love / technology</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent=new Date().getFullYear();
+    const translations={
+      en:{headline:"Tell me what you need.",intro:"A question, an idea, something you need help understanding, or something you want done in Japan — start here.",ask:"Tell me what is happening. I can first help you understand the situation and see what may be possible.",write:"WRITE →",work:"For translation, research, local support in Japan, coordination, cultural context, or a project that needs hands-on help.",consult:"CONSULT →",emailLabel:"Email"},
+      zh:{headline:"告诉我，你需要什么。",intro:"一个问题、一个想法、一件你想弄明白的事，或者一件希望有人在日本替你完成的事——可以从这里开始。",ask:"先告诉我发生了什么。我可以先帮你理解情况，看看有哪些可能。",write:"写给我 →",work:"如果你需要翻译、调查、日本现地协助、协调、文化背景说明，或需要实际推进的项目，可以从这里进入。",consult:"进入协助 →",emailLabel:"邮箱"},
+      fr:{headline:"Dites-moi ce dont vous avez besoin.",intro:"Une question, une idée, quelque chose à comprendre ou quelque chose à faire au Japon — commencez ici.",ask:"Expliquez-moi d’abord la situation. Je peux vous aider à la comprendre et à voir ce qui est possible.",write:"ÉCRIRE →",work:"Pour une traduction, une recherche, un soutien local au Japon, une coordination, un contexte culturel ou un projet qui demande une aide concrète.",consult:"CONSULTER →",emailLabel:"E-mail"},
+      ja:{headline:"必要なことを、教えてください。",intro:"質問でも、アイデアでも、理解したいことでも、日本で誰かに動いてほしいことでも。ここから始められます。",ask:"まず、何が起きているのか教えてください。状況を整理し、何ができそうか一緒に考えます。",write:"メールする →",work:"翻訳、調査、日本での現地サポート、調整、文化的な背景説明、実際に動く必要のあるプロジェクトはこちらから。",consult:"相談する →",emailLabel:"メール"}
+    };
+    const params=new URLSearchParams(window.location.search);
+    const saved=localStorage.getItem("duchen-language");
+    const lang=translations[params.get("lang")]?params.get("lang"):(translations[saved]?saved:"en");
+    document.documentElement.lang=lang==="zh"?"zh-CN":lang;
+    document.querySelectorAll("[data-i18n]").forEach(el=>{const value=translations[lang][el.dataset.i18n];if(value)el.textContent=value;});
+    document.getElementById("home-link").href=`index.html?lang=${lang}`;
+    document.getElementById("back-link").href=`index.html?lang=${lang}`;
+    document.getElementById("work-link").href=`consult.html?lang=${lang}`;
+    localStorage.setItem("duchen-language",lang);
+  </script>
+</body>
+</html>
