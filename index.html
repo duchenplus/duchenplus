@@ -70,7 +70,7 @@
           <a class="nav-item" id="origin-link" href="origin.html"><span><span class="symbol">&lt;&gt;</span><span data-i18n="origin">Origin</span></span></a>
           <a class="nav-item" id="consult-link" href="consult.html"><span><span class="symbol">/ +</span><span data-i18n="consult">Consult</span></span></a>
           <a class="nav-item" id="notes-link" href="notes.html"><span><span class="symbol">//</span><span data-i18n="notes">Notes</span></span></a>
-          <a class="nav-item" href="#life"><span><span class="symbol">♥</span><span data-i18n="life">Life</span></span></a>
+          <a class="nav-item" id="scenes-link" href="scenes.html"><span><span class="symbol">♥</span><span data-i18n="scenes">Scenes</span></span></a>
           <a class="nav-item" id="objects-link" href="objects.html"><span><span class="symbol">□</span><span data-i18n="objects">Objects</span></span></a>
           <a class="nav-item" href="mailto:hello@duchenplus.com"><span><span class="symbol">→</span><span data-i18n="connect">Connect</span></span></a>
         </nav>
@@ -81,10 +81,10 @@
   <script>
     document.getElementById("year").textContent=new Date().getFullYear();
     const translations={
-      en:{status:"Tokyo · Online",kicker:"a personal space / always evolving",manifesto:"culture × life × love × technology",growth:"shedding / growth",origin:"Origin",consult:"Consult",notes:"Notes",life:"Life",objects:"Objects",connect:"Connect",footer:"culture / life / love / technology"},
-      zh:{status:"东京 · 在线",kicker:"一个个人空间 / 持续生长",manifesto:"文化 × 生活 × 爱 × 科技",growth:"舍弃 / 成长",origin:"起点",consult:"协助",notes:"随笔",life:"生活",objects:"物件",connect:"联系",footer:"文化 / 生活 / 爱 / 科技"},
-      fr:{status:"Tokyo · En ligne",kicker:"un espace personnel / en mouvement",manifesto:"culture × vie × amour × technologie",growth:"se délester / grandir",origin:"Origine",consult:"Accompagnement",notes:"Notes",life:"Vie",objects:"Objets",connect:"Contact",footer:"culture / vie / amour / technologie"},
-      ja:{status:"東京 · オンライン",kicker:"個人のための空間 / 変化し続ける",manifesto:"文化 × 暮らし × 愛 × テクノロジー",growth:"手放す / 成長する",origin:"原点",consult:"サポート",notes:"ノート",life:"暮らし",objects:"もの",connect:"つながる",footer:"文化 / 暮らし / 愛 / テクノロジー"}
+      en:{status:"Tokyo · Online",kicker:"a personal space / always evolving",manifesto:"culture × life × love × technology",growth:"shedding / growth",origin:"Origin",consult:"Consult",notes:"Notes",scenes:"Scenes",objects:"Objects",connect:"Connect",footer:"culture / life / love / technology"},
+      zh:{status:"东京 · 在线",kicker:"一个个人空间 / 持续生长",manifesto:"文化 × 生活 × 爱 × 科技",growth:"舍弃 / 成长",origin:"起点",consult:"协助",notes:"随笔",scenes:"片段",objects:"物件",connect:"联系",footer:"文化 / 生活 / 爱 / 科技"},
+      fr:{status:"Tokyo · En ligne",kicker:"un espace personnel / en mouvement",manifesto:"culture × vie × amour × technologie",growth:"se délester / grandir",origin:"Origine",consult:"Accompagnement",notes:"Notes",scenes:"Scènes",objects:"Objets",connect:"Contact",footer:"culture / vie / amour / technologie"},
+      ja:{status:"東京 · オンライン",kicker:"個人のための空間 / 変化し続ける",manifesto:"文化 × 暮らし × 愛 × テクノロジー",growth:"手放す / 成長する",origin:"原点",consult:"サポート",notes:"ノート",scenes:"シーン",objects:"もの",connect:"つながる",footer:"文化 / 暮らし / 愛 / テクノロジー"}
     };
     function setLanguage(language){
       const copy=translations[language]||translations.en;
@@ -94,6 +94,7 @@
       document.getElementById("origin-link").href=`origin.html?lang=${language}`;
       document.getElementById("consult-link").href=`consult.html?lang=${language}`;
       document.getElementById("notes-link").href=`notes.html?lang=${language}`;
+      document.getElementById("scenes-link").href=`scenes.html?lang=${language}`;
       document.getElementById("objects-link").href=`objects.html?lang=${language}`;
       localStorage.setItem("duchen-language",language);
     }
