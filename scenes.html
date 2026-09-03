@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DU/CHEN+ Scenes — personal moments, travel, family, and observations." />
+  <title>SCENES / DU/CHEN+→</title>
+  <style>
+    :root { --bg:#efeee8; --text:#24302f; --muted:#69716e; --line:rgba(36,48,47,0.16); --accent:#5f776f; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { min-height:100vh; background:var(--bg); color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1180px,calc(100% - 40px)); margin:0 auto; }
+    header { padding:28px 0 12px; display:flex; justify-content:space-between; align-items:center; font-size:14px; letter-spacing:.04em; }
+    .brand { font-weight:700; letter-spacing:-.02em; }
+    .mark { color:var(--accent); font-weight:500; }
+    .back { color:var(--muted); }
+    main { padding:88px 0 96px; }
+    .eyebrow { font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:28px; }
+    h1 { font-family:Georgia,"Times New Roman",serif; font-weight:400; font-size:clamp(48px,7.5vw,102px); line-height:.98; letter-spacing:-.045em; max-width:980px; }
+    .intro { margin-top:34px; max-width:680px; font-size:clamp(18px,1.8vw,26px); line-height:1.5; letter-spacing:-.02em; color:var(--muted); }
+    .gallery { margin-top:84px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .scene-slot { aspect-ratio:4/5; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; font-size:12px; letter-spacing:.12em; color:var(--muted); background:rgba(255,255,255,.08); }
+    footer { border-top:1px solid var(--line); padding:18px 0 28px; display:flex; justify-content:space-between; color:var(--muted); font-size:12px; }
+    @media (max-width:760px){ .gallery{grid-template-columns:1fr} }
+    @media (max-width:620px){ .shell{width:min(100% - 26px,1180px)} main{padding:68px 0 76px} footer{flex-direction:column;gap:8px} }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" id="home-link" href="index.html">DU/CHEN<span class="mark">+→</span></a>
+      <a class="back" id="back-link" href="index.html">← HOME</a>
+    </header>
+
+    <main>
+      <div class="eyebrow">SCENES /</div>
+      <h1 data-i18n="headline">Not everything needs to become a story. Some things are enough as a scene.</h1>
+      <p class="intro" data-i18n="intro">Fragments of daily life, travel, family, places, and moments worth keeping.</p>
+
+      <section class="gallery" aria-label="Scenes placeholders">
+        <div class="scene-slot">SCENE 01</div>
+        <div class="scene-slot">SCENE 02</div>
+        <div class="scene-slot">SCENE 03</div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> DU/CHEN<span class="mark">+→</span></span>
+      <span>culture / life / love / technology</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent=new Date().getFullYear();
+    const translations={
+      en:{headline:"Not everything needs to become a story. Some things are enough as a scene.",intro:"Fragments of daily life, travel, family, places, and moments worth keeping."},
+      zh:{headline:"不是所有东西都需要成为故事。有些，只作为一个片段就已经足够。",intro:"日常、旅行、家人、地方，以及值得留下的瞬间。"},
+      fr:{headline:"Tout n’a pas besoin de devenir une histoire. Certaines choses suffisent comme une scène.",intro:"Des fragments du quotidien, des voyages, de la famille, des lieux et des instants à garder."},
+      ja:{headline:"すべてを物語にしなくてもいい。ひとつのシーンとして残るだけで十分なこともある。",intro:"日々の暮らし、旅、家族、場所、そして残しておきたい瞬間の断片。"}
+    };
+    const params=new URLSearchParams(window.location.search);
+    const saved=localStorage.getItem("duchen-language");
+    const lang=translations[params.get("lang")]?params.get("lang"):(translations[saved]?saved:"en");
+    document.documentElement.lang=lang==="zh"?"zh-CN":lang;
+    document.querySelectorAll("[data-i18n]").forEach(el=>{const value=translations[lang][el.dataset.i18n];if(value)el.textContent=value;});
+    document.getElementById("home-link").href=`index.html?lang=${lang}`;
+    document.getElementById("back-link").href=`index.html?lang=${lang}`;
+    localStorage.setItem("duchen-language",lang);
+  </script>
+</body>
+</html>
