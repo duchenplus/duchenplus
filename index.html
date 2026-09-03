@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="DUCHEN+ — Technology × Love × Culture × Art × Life" />
-  <title>DUCHEN+</title>
+  <meta name="description" content="DU/CHEN+→ — Culture × Life × Love × Technology" />
+  <title>DU/CHEN+→</title>
   <style>
     :root {
       --bg: #f7f5f0;
@@ -53,8 +53,15 @@
       letter-spacing: 0.04em;
     }
 
-    .brand-small {
+    .brand-small,
+    .brand-footer {
       font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      color: var(--accent);
+      font-weight: 500;
     }
 
     .status {
@@ -85,16 +92,25 @@
     }
 
     h1 {
-      font-size: clamp(72px, 12vw, 170px);
+      font-size: clamp(64px, 8.4vw, 118px);
       line-height: 0.82;
       letter-spacing: -0.075em;
       font-weight: 800;
       margin-left: -0.06em;
+      white-space: nowrap;
     }
 
-    .plus {
+    h1 .brand-mark {
+      display: inline-block;
+      margin-left: 0.03em;
+      font-size: 0.68em;
+      letter-spacing: -0.1em;
+      transform: translateY(-0.06em);
+    }
+
+    .slash {
       color: var(--accent);
-      font-weight: 500;
+      font-weight: 400;
     }
 
     .manifesto {
@@ -107,6 +123,49 @@
 
     .manifesto span {
       white-space: nowrap;
+    }
+
+    .bridges {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 2.2vw, 30px);
+      margin: 2px 0 14px;
+      color: var(--muted);
+    }
+
+    .bridge-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bridge-icon svg {
+      width: clamp(58px, 5vw, 72px);
+      height: auto;
+      overflow: visible;
+    }
+
+    .bridge-icon path,
+    .bridge-icon line,
+    .bridge-icon polyline {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.45;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     nav {
@@ -177,7 +236,7 @@
       }
 
       h1 {
-        font-size: clamp(64px,20vw, 92px)
+        font-size: clamp(54px, 14vw, 78px);
       }
 
       .symbol {
@@ -222,7 +281,7 @@
 <body>
   <div class="shell">
     <header>
-      <div class="brand-small">DUCHEN+</div>
+      <div class="brand-small">DU/CHEN<span class="brand-mark">+→</span></div>
       <div class="status">Tokyo · Online</div>
     </header>
 
@@ -230,14 +289,35 @@
       <section class="hero">
         <div>
           <div class="kicker">a personal space / always evolving</div>
-          <h1>DUCHEN<span class="plus">+</span></h1>
+          <h1>DU<span class="slash">/</span>CHEN<span class="brand-mark">+→</span></h1>
           <p class="manifesto">
-  <span>technology × culture × life × love</span><br><br>
-  <span>china / france / japan</span><br>
-  <span>business / everyday life</span><br>
-  <span>logic / feeling</span><br>
-  <span>shedding / growth</span>
-</p>
+            <span>culture × life × love × technology</span><br><br>
+            <span class="visually-hidden">China / France / Japan</span>
+            <span class="bridges" aria-hidden="true">
+              <span class="bridge-icon">
+                <svg viewBox="0 0 72 34" role="img">
+                  <title>Chinese bridge</title>
+                  <path d="M4 28h64M8 27c7-1 11-5 15-11 4-6 8-9 13-9s9 3 13 9c4 6 8 10 15 11" />
+                  <path d="M14 23v5M58 23v5M27 12h18M31 8l5-4 5 4M29 8h14v4H29z" />
+                </svg>
+              </span>
+              <span class="bridge-icon">
+                <svg viewBox="0 0 72 34" role="img">
+                  <title>French bridge</title>
+                  <path d="M4 28h64M7 23h58M9 23c3-9 9-13 16-13s13 4 16 13M41 23c3-7 7-10 12-10s9 3 12 10" />
+                  <path d="M8 18v10M66 18v10M7 18h3M65 18h3M9 14v4M67 14v4" />
+                </svg>
+              </span>
+              <span class="bridge-icon">
+                <svg viewBox="0 0 72 34" role="img">
+                  <title>Japanese bridge</title>
+                  <path d="M4 28h64M8 24c8 0 12-2 17-6 4-3 7-5 11-5s7 2 11 5c5 4 9 6 17 6" />
+                  <path d="M10 20v8M62 20v8M15 22v6M57 22v6M8 19h8M56 19h8M10 16v3M62 16v3" />
+                </svg>
+              </span>
+            </span>
+            <span>shedding / growth</span>
+          </p>
         </div>
 
         <nav aria-label="Primary">
@@ -261,8 +341,8 @@
     </main>
 
     <footer>
-      <span>© <span id="year"></span> DUCHEN+</span>
-      <span>technology / culture / life / love</span>
+      <span>© <span id="year"></span> <span class="brand-footer">DU/CHEN<span class="brand-mark">+→</span></span></span>
+      <span>culture / life / love / technology</span>
     </footer>
   </div>
 
